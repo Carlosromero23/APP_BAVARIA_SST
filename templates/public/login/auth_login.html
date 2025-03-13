@@ -1,0 +1,156 @@
+<div class="container-xxl min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+      <div class="card shadow-lg border-0 rounded-5 p-4">
+        <div class="card-body">
+
+          <!-- Logo -->
+          <div class="app-brand justify-content-center mb-4">
+            <span class="app-brand-logo">
+              <img
+                class="logo"
+                src="{{ url_for('static', filename='assets/img/logo.png') }}"
+                alt="Logo"
+                width="180px" />
+            </span>
+          </div>
+
+          <!-- Formulario -->
+          <form id="formAuthentication" action="{{ url_for('loginCliente') }}" method="POST">
+
+            <!-- Email -->
+            <div class="mb-4">
+              <label for="email_user" class="form-label fw-semibold">Correo Electrónico</label>
+              <input 
+                type="email"
+                id="email_user"
+                name="email_user"
+                class="form-control custom-input rounded-4 p-3"
+                placeholder="Ingresa tu correo"
+                required
+                autofocus />
+            </div>
+
+            <!-- Contraseña -->
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <label for="pass_user" class="form-label fw-semibold mb-0">Contraseña</label>
+                <a href="{{ url_for('cpanelRecoveryPassUser') }}" class="small btn-primary2">¿Olvidaste tu contraseña?</a>
+              </div>
+              <div class="input-group input-group-merge">
+                <input
+                  type="password"
+                  id="pass_user"
+                  name="pass_user"
+                  class="form-control custom-input rounded-start-4 p-3"
+                  placeholder="********"
+                  required />
+                <span class="input-group-text bg-white rounded-end-4 cursor-pointer" onclick="togglePassword()">
+                  <i class="bx bx-hide" id="togglePasswordIcon"></i>
+                </span>
+              </div>
+            </div>
+
+            <!-- Botón -->
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary1 rounded-4 p-3 fw-bold">
+                Iniciar sesión
+                <i class="bi bi-arrow-right-circle ms-2"></i>
+              </button>
+            </div>
+          </form>
+
+          <!-- Registro -->
+          <p class="text-center mt-4 mb-0">
+            ¿No tienes cuenta?
+            <a href="./register-user" class="btn-primary2 fw-semibold">Regístrate</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script para el ojito -->
+<script>
+  function togglePassword() {
+    const passwordInput = document.getElementById('pass_user');
+    const icon = document.getElementById('togglePasswordIcon');
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      icon.classList.remove('bx-hide');
+      icon.classList.add('bx-show');
+    } else {
+      passwordInput.type = 'password';
+      icon.classList.remove('bx-show');
+      icon.classList.add('bx-hide');
+    }
+  }
+</script>
+
+<!-- CSS Personalizado -->
+<style>
+  /* Card más redondeada */
+  .card {
+    border-radius: 40px !important;
+  }
+
+  /* Input con foco más marcado */
+  .custom-input {
+    transition: all 0.3s ease;
+    border: 2px solid #ddd;
+    background-color: #f9f9f9;
+  }
+
+  .custom-input:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.2);
+    outline: none;
+    background-color: #fff;
+  }
+
+  /* Icono del ojo */
+  .input-group-text {
+    border: 2px solid #ddd;
+    border-left: 0;
+    transition: all 0.3s ease;
+  }
+
+  .input-group:focus-within .input-group-text {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.2);
+  }
+
+  /* Botón principal */
+  .btn-primary1 {
+    background-color: #1a73e8;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+    font-size: 1.1rem;
+  }
+
+  .btn-primary1:hover {
+    background-color: #1558b0;
+  }
+
+  /* Enlaces */
+  .btn-primary2 {
+    color: #1a73e8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .btn-primary2:hover {
+    color: #1558b0;
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .card {
+      padding: 1.5rem;
+    }
+  }
+</style>
