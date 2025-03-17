@@ -2,61 +2,93 @@
   <div class="app-brand demo">
     <a href="{{ url_for('inicio') }}" class="app-brand-link">
       <span class="app-brand-logo demo">
-        <img
-          src="{{ url_for('static', filename ='assets/img/logo.png') }}"
-          alt="Logo" width="256px"/>
+        <img src="{{ url_for('static', filename='assets/img/logo.png') }}" alt="Logo" width="256px" />
       </span>
     </a>
-
-    <a
-      href="javascript:void(0);"
-      class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
       <i class="bx bx-chevron-left bx-sm align-middle"></i>
     </a>
   </div>
 
   <div class="menu-inner-shadow"></div>
+
   <ul class="menu-inner py-5">
-    <li
-      class=" menu-item {% if request.path == '/registrar-empleado' %} active {% endif %} ">
-      <a href="{{ url_for('viewFormEmpleado') }}" class="menu-link">
-        <i class="menu-icon bi bi-person-bounding-box"></i>
-        <div data-i18n="Basic">Registrar Empleado</div>
+
+    <!-- Menú Registro con submenú -->
+    <li class="menu-item {% if request.path in [
+          '/registro-revision-caja-fuerte',
+          '/extintores-cd-corozal-flota',
+          '/inspeccion-botiquines',
+          '/inspeccion-carretillas-vehiculo',
+          '/inspeccion-cajas-fuertes-vehiculo'
+        ] %} open {% endif %}">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon bi bi-clipboard-check"></i>
+        <div data-i18n="Registro">Registro</div>
       </a>
+      <ul class="menu-sub">
+        <li class="menu-item {% if request.path == '/extintores-cd-corozal-flota' %} active {% endif %}">
+          <a href="/registrar-empleado" class="menu-link">
+            <div data-i18n="Extintores CD Corozal Flota">Extintores CD Corozal Flota</div>
+          </a>
+        </li>
+        <li class="menu-item {% if request.path == '/inspeccion-botiquines' %} active {% endif %}">
+          <a href="/inspeccion-botiquines" class="menu-link">
+            <div data-i18n="Inspección Botiquines">Inspección Botiquines</div>
+          </a>
+        </li>
+        <li class="menu-item {% if request.path == '/inspeccion-carretillas-vehiculo' %} active {% endif %}">
+          <a href="/inspeccion-carretillas-vehiculo" class="menu-link">
+            <div data-i18n="Inspección de Carretillas de Vehículo">Inspección de Carretillas de Vehículo</div>
+          </a>
+        </li>
+        <li class="menu-item {% if request.path == '/inspeccion-cajas-fuertes-vehiculo' %} active {% endif %}">
+          <a href="/inspeccion-cajas-fuertes-vehiculo" class="menu-link">
+            <div data-i18n="Inspección de Cajas Fuertes Vehículo">Inspección de Cajas Fuertes Vehículo</div>
+          </a>
+        </li>
+      </ul>
     </li>
-    <li
-      class="menu-item {% if request.path == '/lista-de-empleados' %} active{% endif %}">
+
+    <!-- Lista de Empleados -->
+    <li class="menu-item {% if request.path == '/lista-de-empleados' %} active {% endif %}">
       <a href="/lista-de-empleados" class="menu-link">
         <i class="menu-icon bi bi-person-lines-fill"></i>
-        <div data-i18n="Boxicons">Lista de Empleados</div>
+        <div data-i18n="Lista de Empleados">Lista de Empleados</div>
       </a>
     </li>
-    <li
-      class="menu-item {% if request.path == '/descargar-informe-empleados' %} active {% endif %} bnt btn-primary2">
+
+    <!-- Reportes -->
+    <li class="menu-item {% if request.path == '/descargar-informe-empleados' %} active {% endif %}">
       <a href="/descargar-informe-empleados" class="menu-link">
-        <i class="menu-icon bi bi-file-earmark-spreadsheet-fill "></i>
-        <div data-i18n="Tables">Reportes</div>
+        <i class="menu-icon bi bi-file-earmark-spreadsheet-fill"></i>
+        <div data-i18n="Reportes">Reportes</div>
       </a>
     </li>
-    <li
-      class="menu-item {% if request.path == '/lista-de-usuarios' %} active {% endif %}">
+
+    <!-- Lista de Usuarios -->
+    <li class="menu-item {% if request.path == '/lista-de-usuarios' %} active {% endif %}">
       <a href="/lista-de-usuarios" class="menu-link">
         <i class="menu-icon bi bi-person-lines-fill"></i>
-        <div data-i18n="Tables">Lista de Usuarios</div>
+        <div data-i18n="Lista de Usuarios">Lista de Usuarios</div>
       </a>
     </li>
-    <li
-      class="menu-item {% if request.path == '/mi-perfil' %} active {% endif %}">
+
+    <!-- Mi Perfil -->
+    <li class="menu-item {% if request.path == '/mi-perfil' %} active {% endif %}">
       <a href="/mi-perfil" class="menu-link">
         <i class="menu-icon bi bi-person-fill-gear"></i>
-        <div data-i18n="Tables">Mi Perfil</div>
+        <div data-i18n="Mi Perfil">Mi Perfil</div>
       </a>
     </li>
+
+    <!-- Salir -->
     <li class="menu-item">
       <a href="{{ url_for('cerraSesion') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-        <div data-i18n="Tables">Salir</div>
+        <div data-i18n="Salir">Salir</div>
       </a>
     </li>
+
   </ul>
 </aside>

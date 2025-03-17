@@ -1,19 +1,18 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %}Crud con Python 🐍 | Registrar Empleado{% endblock %}
-<!---->
+{% block title %}INSPECCIÓN DE CAJAS FUERTES VEHÍCULO{% endblock %}
+
 {% block customCSS %}
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename ='assets/css/file.css') }}" />
 {% endblock %}
 
-<!--Inicio del block-->
 {% block body %}
 <div class="card" style="border-radius: 0px !important">
   <div class="row justify-content-center mb-2">
     <div class="col-md-12">
-      <h3 class="text-center mt-5 mb-3">REGISTRAR NUEVO EMPLEADO</h3>
+      <h3 class="text-center mt-5 mb-3">INSPECCIÓN DE CAJAS FUERTES VEHÍCULO</h3>
       <hr />
     </div>
   </div>
@@ -23,131 +22,121 @@
       <form
         class="form-horizontal mx-auto"
         method="POST"
-        action="/form-registrar-empleado"
-        autocomplete="off"
-        enctype="multipart/form-data">
+        action="/form-inspeccion-caja"
+        autocomplete="off">
+
         <div class="card-body">
+
+          <!-- PLACA -->
           <div class="row">
-            <div class="col-md-6">
-              <label for="nombre_empleado" class="form-label">
-                Nombre del empleado
+            <div class="col-md-12">
+              <label for="placa_vehiculo" class="form-label">
+                Placa del Vehículo
               </label>
               <input
                 type="text"
-                name="nombre_empleado"
+                name="placa_vehiculo"
                 class="form-control"
-                required />
-            </div>
-            <div class="col-md-6">
-              <label for="apellido_empleado" class="form-label">
-                Apellido del empleado
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="apellido_empleado"
                 required />
             </div>
           </div>
 
-          <div class="row mt-2">
+          <!-- Primera columna -->
+          <div class="row mt-3">
             <div class="col-md-6">
-              <label for="sexo_empleado" class="form-label">
-                Sexo del empleado
-              </label>
-              <select
-                class="form-select"
-                name="sexo_empleado"
-                aria-label="Default select example">
+              <label class="form-label">La puerta de la caja fuerte se encuentra en buen estado</label>
+              <select class="form-select" name="puerta_estado" required>
                 <option selected>Seleccione</option>
-                <option value="1">Masculino</option>
-                <option value="2">Femenino</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
               </select>
             </div>
+
             <div class="col-md-6">
-              <label for="telefono_empleado" class="form-label">
-                Telefono del empleado
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="telefono_empleado"
-                required />
+              <label class="form-label">La puerta abre y cierra con facilidad</label>
+              <select class="form-select" name="puerta_facilidad" required>
+                <option selected>Seleccione</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+              </select>
             </div>
           </div>
 
-          <div class="row mt-2">
+          <div class="row mt-3">
             <div class="col-md-6">
-              <label for="email_empleado" class="form-label">
-                Email del empleado
-              </label>
-              <input
-                class="form-control"
-                type="email"
-                name="email_empleado"
-                required />
+              <label class="form-label">La clave de la caja fuerte es precisa</label>
+              <select class="form-select" name="clave_precisa" required>
+                <option selected>Seleccione</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+              </select>
             </div>
+
             <div class="col-md-6">
-              <label for="profesion_empleado" class="form-label">
-                Profesión del empleado
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="profesion_empleado"
-                required />
+              <label class="form-label">La clave la conoce solo el personal autorizado</label>
+              <select class="form-select" name="clave_autorizada" required>
+                <option selected>Seleccione</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+              </select>
             </div>
           </div>
 
-          <div class="row mt-2">
+          <div class="row mt-3">
             <div class="col-md-6">
-              <label for="salario_empleado" class="form-label">
-                Salario del empleado
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="salario_empleado"
-                id="salario_empleado"
-                required />
+              <label class="form-label">La perilla gira con normalidad y ajustada</label>
+              <select class="form-select" name="perilla_funciona" required>
+                <option selected>Seleccione</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+              </select>
             </div>
+
             <div class="col-md-6">
-              <label for="" class="form-label">
-                CARGAR IMAGEN DEL EMPLEADO
-              </label>
-              <div class="avatar-upload">
-                <div class="avatar-edit">
-                  <input
-                    type="file"
-                    name="foto_empleado"
-                    id="imageUpload"
-                    accept=".png, .jpg, .jpeg" />
-                  <label for="imageUpload"><i class="bi bi-pen"></i></label>
-                </div>
-                <div class="avatar-preview">
-                  <div class="avatar-preview">
-                    {% set url_avatar= url_for('static', filename
-                    ='assets/img/avatar.png') %}
-                    <div
-                      id="imagePreview"
-                      style="background-image: url('{{ url_avatar }}')"></div>
-                  </div>
-                </div>
-              </div>
+              <label class="form-label">Los números son nítidos y visibles</label>
+              <select class="form-select" name="numeros_visibles" required>
+                <option selected>Seleccione</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+              </select>
             </div>
           </div>
 
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <label class="form-label">La caja se encuentra anclada y en buenas condiciones</label>
+              <select class="form-select" name="caja_anclada" required>
+                <option selected>Seleccione</option>
+                <option value="Si">Sí</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea
+                class="form-control"
+                name="observaciones"
+                rows="3"
+                placeholder="Ingrese las observaciones que considere necesarias..."></textarea>
+            </div>
+          </div>
+
+          <!-- Botón -->
           <div class="mb-3 mt-4 text-center">
             <button type="submit" class="btn rounded-pill btn-primary1">
-              Guardar registro ahora
+              Guardar Inspección
               <i class="bi bi-arrow-clockwise"></i>
             </button>
           </div>
+
         </div>
       </form>
     </div>
   </div>
 </div>
-{% endblock %} {% block customJS %}
+{% endblock %}
+
+{% block customJS %}
 <script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
 {% endblock %}
